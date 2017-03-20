@@ -1,0 +1,49 @@
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+
+
+<script>
+	function initCanvas(){
+    var ctx = document.getElementById('my_canvas').getContext('2d');
+    ctx.canvas.addEventListener('mousedown', function(event) {
+        var mX = event.clientX - ctx.canvas.offsetLeft;
+        var mY = event.clientY - ctx.canvas.offsetTop;
+        for(var i = 0; i < buildings.length; i++){
+            var b = buildings[i];
+            if(mX >= b.x && mX < b.x+b.w && mY >= b.y && mY < b.y+b.h){
+                document.getElementById('status').innerHTML = "You touched "+b.id;
+            }
+        }
+    });
+    var buildings = [ {"id":"the pink square","x":100,"y":100,"w":50,"h":50,"bg":"magenta"},
+                      {"id":"the grenn square","x":200,"y":100,"w":50,"h":50,"bg":"green"},
+                      {"id":"the otange square","x":300,"y":100,"w":50,"h":50,"bg":"orange"}
+    ];
+    for(var i = 0; i < buildings.length; i++){
+        var b = buildings[i];
+        ctx.fillStyle = b.bg;
+        ctx.fillRect(b.x,b.y,b.w,b.h);
+    }
+}
+window.addEventListener('load', function(event) {
+    initCanvas();
+});
+</script>
+</head>
+<body>
+  
+  <h3 style="text-align: center">Hit Detection Mouse Touch Over Object Arrays</h3>
+  <h4 style="text-align: center">Click the white canvas or an element to see the difference</h4>
+  
+<canvas id="my_canvas" width="500" height="300"></canvas>
+  <h2 id="status"></h2>
+  
+  
+  <!-- footer-->
+  <div style="text-align: center">
+    <h5><a href="http://www.eleftheriabatsou.com" target="_blank">Eleftheria Batsou</a> | <a href="http://codepen.io/EleftheriaBatsou" target="_blank">Projects</a></h5>
+  </div> <!-- end footer -->
+  
+</body>  
+</html>
